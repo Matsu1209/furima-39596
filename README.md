@@ -34,34 +34,52 @@ Things you may want to cover:
 | first_name_kana    | string | null: false                          |	
 | last_name_kana     | string | null: false                          |
 | buyer_name         | string | null: false                          |
-| birthday           | string | null: false                          |	
-| email              | string | null: false, unique constraint: true |	
+| birthday           | date   | null: false                          |	
+| email              | string | null: false, unique: true            |	
 | encrypted_password | string | null: false                          |	
+
+### Association
+
+- belongs_to :addresses
+- has_many :items
+
 
 
 ## items テーブル	
 	
-| Column             | Type       | Options                        |	
-| ------------------ | ---------- | ------------------------------ |	
-| item_name          | string     | null: false                    |	
-| description        | text       | null: false                    |	
-| category           | string     | null: false                    |	
-| condition          | string     | null: false                    |	
-| Shipping_charges   | string     | null: false                    |	
-| Region_of_delivery | string     | null: false                    |	
-| delivery_date      | string     | null: false                    |	
-| price              | string     | null: false                    |	
+| Column                | Type       | Options                        |	
+| --------------------- | ---------- | ------------------------------ |	
+| item_name             | string     | null: false                    |	
+| description           | text       | null: false                    |	
+| category_id           | integer    | null: false                    |	
+| condition_id          | integer    | null: false                    |	
+| Shipping_charges_id   | integer    | null: false                    |	
+| prefecture_id         | integer    | null: false                    |	
+| delivery_date_id      | integer    | null: false                    |	
+| price                 | integer    | null: false                    |	
 
-## address テーブル	
+### Association
+
+- belongs_to :user
+- belongs_to :purchase_record
+
+
+
+## addresses テーブル	
 	
 | Column             | Type       | Options                        |	
 | ------------------ | ---------- | ------------------------------ |	
 | post_code          | string     | null: false                    |	
-| prefecture         | string     | null: false                    |	
+| prefecture_id      | integer    | null: false                    |	
 | municipalities     | string     | null: false                    |	
 | street_address     | string     | null: false                    |	
-| Building_name      | string     | null: false                    |	
+| building_name      | string     |                                |	
 | telephone_number   | string     | null: false                    |	
+
+### Association
+
+- belongs_to :user
+
 
 
 ## purchase_record テーブル	
@@ -71,6 +89,8 @@ Things you may want to cover:
 | user               | references | null: false, foreign_key: true |
 | items              | references | null: false, foreign_key: true |
 
+### Association
 
-
+- belongs_to :user
+- belongs_to :items
 
