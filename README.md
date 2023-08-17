@@ -63,13 +63,6 @@ Things you may want to cover:
 | Building_name      | string     | null: false                    |	
 | telephone_number   | string     | null: false                    |	
 
-post_code
-prefecture
-municipalities
-street_address
-Building_name
-telephone_number
-
 
 ## purchase_record テーブル	
 
