@@ -39,7 +39,7 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :purchase_record
+- has_many :purchase_record
 - has_many :items
 
 
