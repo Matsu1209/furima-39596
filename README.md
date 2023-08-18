@@ -39,7 +39,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :purchase_record
+- has_many :purchase_records
 - has_many :items
 
 
@@ -61,7 +61,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase_record
+- has_one :purchase_record
 
 
 
@@ -71,7 +71,7 @@ Things you may want to cover:
 | ------------------ | ---------- | ------------------------------ |	
 | post_code          | string     | null: false                    |	
 | prefecture_id      | integer    | null: false                    |	
-| municipalities     | string     | null: false                    |	
+| municipality       | string     | null: false                    |	
 | street_address     | string     | null: false                    |	
 | building_name      | string     |                                |	
 | telephone_number   | string     | null: false                    |	
@@ -91,6 +91,6 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :user
-- has_one :item
+- belongs_to :user
+- belongs_to :item
 - has_one :address
