@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :nick_name,  presence: true
   validates :birthday, presence: { message: "date can't be blank" }
 
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-zA-Z])(?=.*?\d)[A-Za-z0-9]+\z/.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers' 
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters'} do
