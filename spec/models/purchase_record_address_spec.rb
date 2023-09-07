@@ -5,7 +5,7 @@ RSpec.describe PurchaseRecordAddress, type: :model do
   before do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
-    @purchase_record_address = FactoryBot.build(:purchase_record_address, user_id: user.id, item_id: item.id)
+    @purchase_record_address = FactoryBot.build(:purchase_record_address, user_id: user.id, item_id: item.id,)
   end
     
   describe '購入' do
@@ -70,21 +70,6 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         @purchase_record_address.telephone_number = '０９０１２３４５６７８'
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Telephone number is not a number")
-      end
-      it 'クレジットカード番号が空では購入できない' do
-        @purchase_record_address.credit_card_number = ''
-        @purchase_record_address.valid?
-        expect(@purchase_record_address.errors.full_messages).to include("Credit card number can't be blank")
-      end
-      it '有効期限が空では購入できない' do
-        @purchase_record_address.expiration_date = ''
-        @purchase_record_address.valid?
-        expect(@purchase_record_address.errors.full_messages).to include("Expiration date can't be blank")
-      end
-      it 'セキュリティコードが空では購入できない' do
-        @purchase_record_address.security_code = ''
-        @purchase_record_address.valid?
-        expect(@purchase_record_address.errors.full_messages).to include("Security code can't be blank")
       end
       it "tokenが空では登録できないこと" do
         @purchase_record_address.token = nil

@@ -7,9 +7,10 @@ before_action :authenticate_user!
     @item = Item.find(params[:item_id])
 
     @purchase_records = PurchaseRecord.where(item_id: @item.id)
-    if current_user 
+    @item = Item.find(params[:item_id])
+    if current_user == @item.user
       redirect_to root_path
-    elsif @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) # 売却済み商品の場合、トップページにリダイレクト
+    elsif @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) 
       redirect_to root_path
     end
   end

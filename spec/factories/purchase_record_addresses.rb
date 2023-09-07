@@ -6,9 +6,6 @@ FactoryBot.define do
     street_address {'1-1-1'}
     building_name {'建物名'}
     telephone_number {'09000000000'}
-    credit_card_number {'4242424242424242'}
-    expiration_date {'202312'}
-    security_code {'123'}
     token {"tok_abcdefghijk00000000000000000"}
   end
 end
