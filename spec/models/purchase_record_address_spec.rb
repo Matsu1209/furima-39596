@@ -84,12 +84,14 @@ RSpec.describe PurchaseRecordAddress, type: :model do
       it "userが紐付いていなければ購入できない" do
         item = FactoryBot.create(:item)
         usernil = FactoryBot.build(:purchase_record_address, item_id: item.id)
-        expect(usernil).to_not be_valid
+        usernil.valid?
+        expect(usernil.errors.full_messages).to include("User can't be blank")
       end
       it "itemが紐付いていなければ購入できない" do
         user = FactoryBot.create(:user)
         itemnil= FactoryBot.build(:purchase_record_address, user_id: user.id)
-        expect(itemnil).to_not be_valid
+        itemnil.valid?
+        expect(itemnil.errors.full_messages).to include("Item can't be blank")
       end
       
     end
