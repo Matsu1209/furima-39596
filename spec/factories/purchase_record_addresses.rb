@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :purchase_record_address do
     post_code {'900-0000'}
-    prefecture_id {'宮城県'}
+    prefecture_id {'2'}
     municipality {'仙台市青葉区ダミー町'}
     street_address {'1-1-1'}
     building_name {'建物名'}

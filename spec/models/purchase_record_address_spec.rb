@@ -5,7 +5,7 @@ RSpec.describe PurchaseRecordAddress, type: :model do
   before do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
-    @purchase_record_address = FactoryBot.build(:purchase_record_address, user_id: user.id, item_id: item.id,)
+    @purchase_record_address = FactoryBot.build(:purchase_record_address, user_id: user.id, item_id: item.id)
   end
     
   describe '購入' do
@@ -38,6 +38,11 @@ RSpec.describe PurchaseRecordAddress, type: :model do
       end
       it '都道府県が空では購入できない' do
         @purchase_record_address.prefecture_id = ''
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it '都道府県に「---」が選択されている場合は購入できない' do
+        @purchase_record_address.prefecture_id = '1'
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -76,6 +81,17 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Token can't be blank")
       end
+      it "userが紐付いていなければ購入できない" do
+        item = FactoryBot.create(:item)
+        usernil = FactoryBot.build(:purchase_record_address, item_id: item.id)
+        expect(usernil).to_not be_valid
+      end
+      it "itemが紐付いていなければ購入できない" do
+        user = FactoryBot.create(:user)
+        itemnil= FactoryBot.build(:purchase_record_address, user_id: user.id)
+        expect(itemnil).to_not be_valid
+      end
+      
     end
     
   end
